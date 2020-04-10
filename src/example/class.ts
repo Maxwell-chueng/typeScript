@@ -36,12 +36,50 @@ class Point {
 }
 
 // 使用 extends和super继承父类的方法
-
+// 使用get和set方式，类似于Object.definedProperty中的getter和setter
 class Child extends Point{
+    public name:string
+    public age : string
     constructor(x:number,y:number){
         super(x,y)
+    }
+    get getLocation() {
+        return `(${this.name},${this.age})`;
+    }
+    set setLocation(newVal) {
+        console.log(newVal)
+        this.name = `${newVal}像周杰伦`;
+        this.age = "今年18岁";
     }
 }
 
 let p1 = new Child(10,3);
+p1.name = 'zxj';
+p1.setLocation = 'zxj';
 console.log(p1.getPosition());
+console.log(p1.getLocation);
+// console.log(p1.getLocation);
+
+
+// 使用abstract创建的类为抽象类，创建的方法为抽象方法，抽象类只能被用来继承，无法实例化
+
+abstract class People {
+    student:number
+    teacher:number
+    name:string
+    constructor(name:string){
+        this.name = name;
+    }
+    public abstract printName():void
+}
+class man extends People{
+    constructor(name:string){
+        super(name);
+        this.name = name;
+    }
+    public printName(){
+        console.log(this.name);
+    }
+}
+let pp = new man('zxj111');
+console.log(pp.printName());
